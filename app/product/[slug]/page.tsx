@@ -2,6 +2,7 @@ import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import AddToCartForm from '@/components/AddToCartForm';
 import ProductCarousel from '@/components/ProductCarousel';
+import ProductAccordions from '@/components/ProductAccordions';
 import { Heart, Star, Check, Truck, RotateCcw, Plus, Minus } from 'lucide-react';
 import { getProductBySlug, getProducts } from '@/lib/api';
 
@@ -72,24 +73,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
 
           {/* Accordions */}
-          <div className="border-t border-gray-200">
-            <div className="py-4 border-b border-gray-200 flex justify-between items-center cursor-pointer group">
-              <span className="font-bold uppercase tracking-widest text-sm">Description</span>
-              <Minus className="w-5 h-5 text-gray-500" />
-            </div>
-            <div className="py-4 text-gray-600 text-sm space-y-4">
-              <p>{product.description}</p>
-            </div>
-            
-            <div className="py-4 border-b border-gray-200 flex justify-between items-center cursor-pointer group">
-              <span className="font-bold uppercase tracking-widest text-sm">Fit & Materials</span>
-              <Plus className="w-5 h-5 text-gray-500 group-hover:text-black transition-colors" />
-            </div>
-            <div className="py-4 border-b border-gray-200 flex justify-between items-center cursor-pointer group">
-              <span className="font-bold uppercase tracking-widest text-sm">Delivery & Returns</span>
-              <Plus className="w-5 h-5 text-gray-500 group-hover:text-black transition-colors" />
-            </div>
-          </div>
+          <ProductAccordions description={product.description} />
         </div>
       </div>
 
