@@ -1,11 +1,11 @@
-import Button from '@/components/ui/Button';
 import ProductCard from '@/components/ProductCard';
+import AddToCartForm from '@/components/AddToCartForm';
 import { Heart, Star, Check, Truck, RotateCcw, Plus, Minus } from 'lucide-react';
-import products from '@/data/products.json';
+import { getProductBySlug, getProducts } from '@/lib/api';
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = products.find(p => p.slug === slug);
+  const product = await getProductBySlug(slug);
   
   if (!product) {
     return (
@@ -16,10 +16,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     );
   }
 
-  const relatedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 4);
+  const allProducts = await getProducts();
+  const relatedProducts = allProducts.filter(p => p.id !== product.id && p.category === product.category).slice(0, 4);
   if (relatedProducts.length < 4) {
     // Fill up with other products if not enough in same category
-    const additional = products.filter(p => p.id !== product.id && p.category !== product.category).slice(0, 4 - relatedProducts.length);
+    const additional = allProducts.filter(p => p.id !== product.id && p.category !== product.category).slice(0, 4 - relatedProducts.length);
     relatedProducts.push(...additional);
   }
 
@@ -62,36 +63,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <p className="text-2xl font-bold mb-4">₹{product.price.toLocaleString('en-IN')}</p>
           <p className="text-gray-600 mb-8">{product.description}</p>
 
-          {/* Color Selection */}
-          <div className="mb-6">
-            <p className="text-xs font-bold uppercase tracking-widest mb-3">Colour <span className="text-gray-500 font-normal lowercase ml-1">({product.colors} options)</span></p>
-            <div className="flex gap-3">
-              {Array.from({ length: product.colors }).map((_, i) => (
-                <button key={i} className={`w-8 h-8 rounded-full border border-gray-300 transition-all ${i === 0 ? 'bg-black ring-2 ring-offset-2 ring-black' : 'bg-gray-400 hover:ring-2 hover:ring-offset-2 hover:ring-gray-300'}`}></button>
-              ))}
-            </div>
-          </div>
-
-          {/* Size Selection */}
-          <div className="mb-8">
-            <div className="flex justify-between items-center mb-3">
-              <p className="text-xs font-bold uppercase tracking-widest">Size</p>
-              <button className="text-xs font-bold border-b border-black pb-0.5">Size Guide</button>
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {['XS', 'S', 'M', 'L', 'XL'].map((size, idx) => (
-                <button key={size} className={`py-3 border border-gray-300 text-center font-bold hover:border-black transition-colors ${idx === 2 ? 'bg-black text-white border-black' : ''}`}>{size}</button>
-              ))}
-            </div>
-          </div>
-
-          {/* Actions */}
-          <div className="flex gap-4 mb-8">
-            <Button variant="secondary" fullWidth>Add to Bag</Button>
-            <button className="p-4 border border-gray-300 hover:border-black transition-colors flex items-center justify-center">
-              <Heart className="w-6 h-6" />
-            </button>
-          </div>
+          <AddToCartForm product={product} />
 
           {/* Info Features */}
           <div className="space-y-3 text-sm text-gray-600 mb-8">

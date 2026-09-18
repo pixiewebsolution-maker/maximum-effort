@@ -1,8 +1,9 @@
 import Button from '@/components/ui/Button';
 import ProductCard from '@/components/ProductCard';
-import products from '@/data/products.json';
+import { getProducts } from '@/lib/api';
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
   const newReleases = products.filter(p => p.isNew).slice(0, 4);
   const bestSellers = products.filter(p => p.isBestSeller).slice(0, 4);
 

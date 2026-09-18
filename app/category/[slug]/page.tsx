@@ -1,7 +1,7 @@
 import ProductCard from '@/components/ProductCard';
 import FilterSortBar from '@/components/FilterSortBar';
 import FilterContent from '@/components/FilterContent';
-import products from '@/data/products.json';
+import { getProducts } from '@/lib/api';
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -10,6 +10,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const title = slug === 'women' ? 'Women' : 
                 slug === 'men' ? 'Men' : 
                 slug === 'accessories' ? 'Accessories' : 'Category';
+
+  const products = await getProducts();
 
   // Filter products by slug tags
   let filteredProducts = products;
