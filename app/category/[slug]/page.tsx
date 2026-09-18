@@ -3,16 +3,18 @@ import FilterSortBar from '@/components/FilterSortBar';
 import FilterContent from '@/components/FilterContent';
 import products from '@/data/products.json';
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
   // Decode slug
-  const title = params.slug === 'women' ? 'Women' : 
-                params.slug === 'men' ? 'Men' : 
-                params.slug === 'accessories' ? 'Accessories' : 'Category';
+  const title = slug === 'women' ? 'Women' : 
+                slug === 'men' ? 'Men' : 
+                slug === 'accessories' ? 'Accessories' : 'Category';
 
   // Filter products by slug tags
   let filteredProducts = products;
-  if (params.slug !== 'all') {
-    filteredProducts = products.filter(p => p.tags.includes(params.slug));
+  if (slug !== 'all') {
+    filteredProducts = products.filter(p => p.tags.includes(slug));
   }
 
   return (

@@ -3,8 +3,9 @@ import ProductCard from '@/components/ProductCard';
 import { Heart, Star, Check, Truck, RotateCcw, Plus, Minus } from 'lucide-react';
 import products from '@/data/products.json';
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = products.find(p => p.slug === params.slug);
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = products.find(p => p.slug === slug);
   
   if (!product) {
     return (
