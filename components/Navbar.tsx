@@ -1,0 +1,38 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { Search, User, Heart, ShoppingBag, Menu } from 'lucide-react';
+
+export default function Navbar() {
+  return (
+    <nav className="w-full h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 md:px-8 sticky top-0 z-50">
+      {/* Mobile Menu & Navlinks (Left) */}
+      <div className="flex items-center space-x-6">
+        <button className="md:hidden">
+          <Menu className="w-6 h-6" />
+        </button>
+        <div className="hidden md:flex items-center space-x-6 text-sm font-semibold tracking-wide uppercase font-heading">
+          <Link href="/category/women" className="hover:text-gray-600 transition-colors">Women</Link>
+          <Link href="/category/men" className="hover:text-gray-600 transition-colors">Men</Link>
+          <Link href="/category/accessories" className="hover:text-gray-600 transition-colors">Accessories</Link>
+          <Link href="/category/sale" className="hover:text-red-600 transition-colors">Sale</Link>
+          <Link href="/blog" className="hover:text-gray-600 transition-colors">Blog</Link>
+        </div>
+      </div>
+
+      {/* Logo (Center) */}
+      <div className="absolute left-1/2 -translate-x-1/2">
+        <Link href="/">
+          <Image src="/images/logo.PNG" alt="Maximum Effort" width={180} height={40} className="object-contain" priority />
+        </Link>
+      </div>
+
+      {/* Action Buttons (Right) */}
+      <div className="flex items-center space-x-4">
+        <button className="hover:text-gray-600"><Search className="w-5 h-5" /></button>
+        <button className="hover:text-gray-600 hidden md:block"><User className="w-5 h-5" /></button>
+        <button className="hover:text-gray-600 hidden md:block"><Heart className="w-5 h-5" /></button>
+        <button className="hover:text-gray-600"><ShoppingBag className="w-5 h-5" /></button>
+      </div>
+    </nav>
+  );
+}
