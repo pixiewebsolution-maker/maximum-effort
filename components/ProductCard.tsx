@@ -41,9 +41,13 @@ export default function ProductCard({
           <Heart className="w-4 h-4" />
         </button>
 
-        {/* Image Placeholder */}
-        <div className="w-full h-full flex items-center justify-center bg-gray-200">
-          <span className="text-gray-400 text-sm">Product Image ({name})</span>
+        {/* Image */}
+        <div className="w-full h-full relative">
+          <img 
+            src={`https://loremflickr.com/600/800/fitness,gym,wear?lock=${id}`}
+            alt={name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
         </div>
       </div>
 

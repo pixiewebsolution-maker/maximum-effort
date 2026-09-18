@@ -30,11 +30,19 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       <div className="flex flex-col md:flex-row gap-12 lg:gap-24">
         {/* Left: Product Images */}
         <div className="w-full md:w-1/2 flex flex-col gap-4">
-          <div className="aspect-[3/4] bg-gray-200 w-full relative">
-             <div className="absolute inset-0 flex items-center justify-center text-gray-400">Main Image ({product.name})</div>
+          <div className="aspect-[3/4] bg-gray-200 w-full relative overflow-hidden">
+             <img 
+               src={`https://loremflickr.com/600/800/fitness,gym,wear?lock=${product.id}`}
+               alt={`${product.name} Main`}
+               className="w-full h-full object-cover"
+             />
           </div>
-          <div className="aspect-[3/4] bg-gray-300 w-full relative">
-             <div className="absolute inset-0 flex items-center justify-center text-gray-500">Alt Image ({product.name})</div>
+          <div className="aspect-[3/4] bg-gray-300 w-full relative overflow-hidden">
+             <img 
+               src={`https://loremflickr.com/600/800/fitness,gym,wear?lock=${Number(product.id) + 100}`}
+               alt={`${product.name} Alternate`}
+               className="w-full h-full object-cover"
+             />
           </div>
         </div>
 
