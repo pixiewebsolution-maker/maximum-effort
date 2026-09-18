@@ -58,7 +58,7 @@ export default function Navbar() {
       {/* Action Buttons (Right) */}
       <div className="flex items-center space-x-4">
         <button onClick={() => setIsSearchOpen(true)} className="hover:text-gray-300 transition-colors"><Search className="w-5 h-5" /></button>
-        <button onClick={() => alert("User account clicked")} className="hover:text-gray-300 transition-colors hidden md:block"><User className="w-5 h-5" /></button>
+        <button onClick={() => router.push('/login')} className="hover:text-gray-300 transition-colors hidden md:block"><User className="w-5 h-5" /></button>
         <button onClick={toggleWishlist} className="hover:text-gray-300 transition-colors hidden md:block relative">
           <Heart className="w-5 h-5" />
           {wishlistCount > 0 && (
