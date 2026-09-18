@@ -11,3 +11,8 @@
 body {
   @apply bg-white text-black font-sans;
 }
+
+/* Ensure all clickable elements have a pointer cursor */
+button, a, [role="button"] {
+  cursor: pointer;
+}

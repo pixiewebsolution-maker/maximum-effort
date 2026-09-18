@@ -1,5 +1,5 @@
 import ProductCard from '@/components/ProductCard';
-import { SlidersHorizontal, ChevronDown } from 'lucide-react';
+import FilterSortBar from '@/components/FilterSortBar';
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   // Decode slug
@@ -21,22 +21,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
 
       {/* Filter and Sort Bar */}
       <section className="border-b border-gray-200 py-4 px-4 md:px-8 sticky top-16 bg-white z-40">
-        <div className="max-w-7xl mx-auto flex justify-between items-center text-sm font-bold uppercase tracking-widest">
-          <button className="flex items-center gap-2 border border-gray-300 px-4 py-2 hover:bg-gray-100 transition-colors">
-            <SlidersHorizontal className="w-4 h-4" />
-            Filter
-          </button>
-          
-          <div className="hidden md:block text-gray-500">12 products</div>
-          
-          <div className="flex items-center gap-2">
-            <span className="hidden md:inline-block">Sort</span>
-            <button className="flex items-center gap-2 border border-gray-300 px-4 py-2 hover:bg-gray-100 transition-colors">
-              Featured
-              <ChevronDown className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
+        <FilterSortBar />
       </section>
 
       {/* Product Grid */}
