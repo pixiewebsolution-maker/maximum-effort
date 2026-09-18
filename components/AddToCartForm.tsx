@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
 import { Product } from '@/lib/api';
 import Button from '@/components/ui/Button';
 import { Heart } from 'lucide-react';
@@ -15,6 +16,7 @@ export default function AddToCartForm({ product }: AddToCartFormProps) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const handleAddToCart = async () => {
     if (selectedColor === null || !selectedSize) {
@@ -69,8 +71,13 @@ export default function AddToCartForm({ product }: AddToCartFormProps) {
 
       <div className="flex gap-4 mb-4">
         <Button onClick={handleAddToCart} variant="primary" className="flex-1">Add to Bag</Button>
-        <button className="p-4 border border-gray-300 hover:border-black transition-colors flex items-center justify-center shrink-0">
-          <Heart className="w-6 h-6" />
+        <button 
+          onClick={() => isInWishlist(product.id) ? removeFromWishlist(product.id) : addToWishlist(product)}
+          className={`p-4 border transition-colors flex items-center justify-center shrink-0 ${
+            isInWishlist(product.id) ? 'border-black bg-black text-white' : 'border-gray-300 hover:border-black text-black'
+          }`}
+        >
+          <Heart className={`w-6 h-6 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
         </button>
       </div>
     </>

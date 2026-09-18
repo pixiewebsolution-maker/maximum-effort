@@ -4,9 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Search, User, Heart, ShoppingBag, Menu } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
 
 export default function Navbar() {
   const { toggleCart, cartCount } = useCart();
+  const { toggleWishlist, wishlistCount } = useWishlist();
   return (
     <nav className="w-full h-16 bg-black text-white border-b border-gray-800 flex items-center justify-between px-4 md:px-8 sticky top-0 z-50">
       {/* Mobile Menu & Navlinks (Left) */}
@@ -33,7 +35,14 @@ export default function Navbar() {
       <div className="flex items-center space-x-4">
         <button onClick={() => alert("Search clicked")} className="hover:text-gray-300 transition-colors"><Search className="w-5 h-5" /></button>
         <button onClick={() => alert("User account clicked")} className="hover:text-gray-300 transition-colors hidden md:block"><User className="w-5 h-5" /></button>
-        <button onClick={() => alert("Wishlist clicked")} className="hover:text-gray-300 transition-colors hidden md:block"><Heart className="w-5 h-5" /></button>
+        <button onClick={toggleWishlist} className="hover:text-gray-300 transition-colors hidden md:block relative">
+          <Heart className="w-5 h-5" />
+          {wishlistCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              {wishlistCount}
+            </span>
+          )}
+        </button>
         <button onClick={toggleCart} className="hover:text-gray-300 transition-colors relative">
           <ShoppingBag className="w-5 h-5" />
           {cartCount > 0 && (
