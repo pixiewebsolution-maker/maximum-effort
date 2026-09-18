@@ -20,18 +20,18 @@ export default function ProductCarousel({ images, altPrefix }: ProductCarouselPr
   };
 
   return (
-    <div className="relative w-full aspect-[3/4] md:aspect-[4/5] group overflow-hidden bg-gray-100">
+    <div className="relative w-full h-[60vh] md:h-[calc(100vh-8rem)] max-h-[800px] group overflow-hidden bg-gray-100 rounded-xl">
       {/* Images container */}
       <div 
         className="flex h-full transition-transform duration-500 ease-in-out" 
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((src, index) => (
-          <div key={index} className="w-full h-full shrink-0 relative">
+          <div key={index} className="w-full h-full shrink-0 relative bg-gray-100 flex items-center justify-center">
             <img 
               src={src}
               alt={`${altPrefix} Image ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain mix-blend-multiply"
             />
           </div>
         ))}
