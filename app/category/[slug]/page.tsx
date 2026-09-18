@@ -1,11 +1,18 @@
 import ProductCard from '@/components/ProductCard';
 import FilterSortBar from '@/components/FilterSortBar';
+import products from '@/data/products.json';
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   // Decode slug
   const title = params.slug === 'women' ? 'Women' : 
                 params.slug === 'men' ? 'Men' : 
                 params.slug === 'accessories' ? 'Accessories' : 'Category';
+
+  // Filter products by slug tags
+  let filteredProducts = products;
+  if (params.slug !== 'all') {
+    filteredProducts = products.filter(p => p.tags.includes(params.slug));
+  }
 
   return (
     <div>
@@ -27,19 +34,25 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
       {/* Product Grid */}
       <section className="py-8 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-x-6 md:gap-y-12">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <ProductCard 
-              key={i} 
-              id={i.toString()} 
-              name={["Grit High-Support Sports Bra", "Relentless Seamless Leggings", "Contour Sculpt Leggings", "Recovery Oversized Hoodie"][i % 4]} 
-              category={["Sports Bras", "Leggings", "Leggings", "Hoodies & Jackets"][i % 4]} 
-              price={[1799, 2799, 3199, 3499][i % 4]} 
-              image="/placeholder.jpg" 
-              colors={3} 
-              isBestSeller={i < 4}
-              isNew={i >= 4 && i < 6}
-            />
-          ))}
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map(product => (
+              <ProductCard 
+                key={product.id} 
+                id={product.id} 
+                name={product.name} 
+                category={product.category} 
+                price={product.price} 
+                image={product.image} 
+                colors={product.colors} 
+                isBestSeller={product.isBestSeller}
+                isNew={product.isNew}
+              />
+            ))
+          ) : (
+            <div className="col-span-full py-12 text-center text-gray-500 font-bold tracking-widest uppercase">
+              No products found in this category.
+            </div>
+          )}
         </div>
       </section>
     </div>

@@ -1,7 +1,11 @@
 import Button from '@/components/ui/Button';
 import ProductCard from '@/components/ProductCard';
+import products from '@/data/products.json';
 
 export default function Home() {
+  const newReleases = products.filter(p => p.isNew).slice(0, 4);
+  const bestSellers = products.filter(p => p.isBestSeller).slice(0, 4);
+
   return (
     <div>
       {/* Hero Section */}
@@ -44,10 +48,19 @@ export default function Home() {
           <button className="text-sm font-bold border-b border-black pb-1">View All</button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          <ProductCard id="1" name="Lifting Straps & Pouch" category="Lifting Equipment" price={1299} image="/placeholder.jpg" colors={2} isNew />
-          <ProductCard id="2" name="Trailhead Zip Hoodie" category="Hoodies & Jackets" price={3999} image="/placeholder.jpg" colors={2} isNew />
-          <ProductCard id="3" name="Storm Zip Jacket" category="Hoodies & Jackets" price={4299} image="/placeholder.jpg" colors={2} isNew />
-          <ProductCard id="4" name="Tapered Tech Joggers" category="Joggers" price={3299} image="/placeholder.jpg" colors={2} isNew />
+          {newReleases.map(product => (
+            <ProductCard 
+              key={product.id} 
+              id={product.id} 
+              name={product.name} 
+              category={product.category} 
+              price={product.price} 
+              image={product.image} 
+              colors={product.colors} 
+              isNew={product.isNew} 
+              isBestSeller={product.isBestSeller}
+            />
+          ))}
         </div>
       </section>
 
@@ -106,10 +119,19 @@ export default function Home() {
           <button className="text-sm font-bold border-b border-black pb-1">View All</button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          <ProductCard id="5" name="Grit High-Support Sports Bra" category="Sports Bras" price={1799} image="/placeholder.jpg" colors={3} isBestSeller />
-          <ProductCard id="6" name="Relentless Seamless Leggings" category="Leggings" price={2799} image="/placeholder.jpg" colors={4} isNew />
-          <ProductCard id="7" name="Iron Core Oversized T-Shirt" category="T-Shirts & Tops" price={1699} image="/placeholder.jpg" colors={3} isBestSeller />
-          <ProductCard id="8" name="Crew Socks 3-Pack" category="Socks" price={799} image="/placeholder.jpg" colors={2} isBestSeller />
+          {bestSellers.map(product => (
+            <ProductCard 
+              key={product.id} 
+              id={product.id} 
+              name={product.name} 
+              category={product.category} 
+              price={product.price} 
+              image={product.image} 
+              colors={product.colors} 
+              isNew={product.isNew} 
+              isBestSeller={product.isBestSeller}
+            />
+          ))}
         </div>
       </section>
 
