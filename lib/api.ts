@@ -16,6 +16,22 @@ export interface Product {
   tags: string[];
 }
 
+export interface HomepageData {
+  hero_subtext: string;
+  hero_title: string;
+  hero_description: string;
+  hero_image: string;
+  cat_women_image: string;
+  cat_men_image: string;
+  cat_acc_image: string;
+  coll_seamless_title: string;
+  coll_seamless_desc: string;
+  coll_seamless_img: string;
+  coll_fleece_title: string;
+  coll_fleece_desc: string;
+  coll_fleece_img: string;
+}
+
 async function fetchWooCommerceProducts(): Promise<Product[]> {
   try {
     const url = process.env.WC_API_URL;
@@ -76,4 +92,25 @@ export async function getProducts(): Promise<Product[]> {
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
   const allProducts = await getProducts();
   return allProducts.find((p) => p.slug === slug);
+}
+
+export async function getHomepageData(): Promise<HomepageData | null> {
+  try {
+    const url = process.env.WC_API_URL?.replace('/wc/v3', '/wp/v2');
+    if (!url) return null;
+
+    const response = await fetch(`${url}/pages?slug=home`, {
+      next: { revalidate: 60 }
+    });
+
+    if (!response.ok) return null;
+
+    const pages = await response.json();
+    if (!pages || pages.length === 0 || !pages[0].acf) return null;
+
+    return pages[0].acf as HomepageData;
+  } catch (error) {
+    console.error("Error fetching homepage ACF data:", error);
+    return null;
+  }
 }
