@@ -23,7 +23,9 @@ export default async function Home() {
           <p className="text-lg md:text-xl mb-8">
             Fleece, straps and shorts for the sessions that ask for everything.
           </p>
-          <Button variant="primary">Shop Men</Button>
+          <Link href="/category/men">
+            <Button variant="primary">Shop Men</Button>
+          </Link>
         </div>
       </section>
 
@@ -73,47 +75,47 @@ export default async function Home() {
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
         <h2 className="text-3xl font-heading font-bold uppercase mb-8">Shop By Category</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[400px]">
-          <div className="bg-gray-200 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/fitness,women?lock=11")' }}>
+          <Link href="/category/women" className="bg-gray-200 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/fitness,women?lock=11")' }}>
              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors z-10" />
              <div className="relative z-20 text-white">
                 <h3 className="text-3xl font-heading font-bold uppercase">Women</h3>
                 <span className="border-b border-white pb-1 mt-2 inline-block font-bold">Shop now</span>
              </div>
-          </div>
-          <div className="bg-gray-300 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/fitness,men?lock=12")' }}>
+          </Link>
+          <Link href="/category/men" className="bg-gray-300 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/fitness,men?lock=12")' }}>
              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors z-10" />
              <div className="relative z-20 text-white">
                 <h3 className="text-3xl font-heading font-bold uppercase">Men</h3>
                 <span className="border-b border-white pb-1 mt-2 inline-block font-bold">Shop now</span>
              </div>
-          </div>
-          <div className="bg-gray-400 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/gym,equipment?lock=13")' }}>
+          </Link>
+          <Link href="/category/accessories" className="bg-gray-400 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/gym,equipment?lock=13")' }}>
              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors z-10" />
              <div className="relative z-20 text-white">
                 <h3 className="text-3xl font-heading font-bold uppercase">Accessories</h3>
                 <span className="border-b border-white pb-1 mt-2 inline-block font-bold">Shop now</span>
              </div>
-          </div>
+          </Link>
         </div>
 
         {/* Seamless and Fleece */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 h-[500px]">
-          <div className="bg-gray-500 relative group overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/800/1000/yoga,apparel?lock=14")' }}>
+          <Link href="/category/women" className="bg-gray-500 relative group overflow-hidden flex items-end p-8 bg-cover bg-center block" style={{ backgroundImage: 'url("https://loremflickr.com/800/1000/yoga,apparel?lock=14")' }}>
              <div className="absolute inset-0 bg-black/30 z-10" />
              <div className="relative z-20 text-white max-w-md">
                 <h3 className="text-4xl font-heading font-bold uppercase leading-tight mb-2">The Seamless Collection</h3>
                 <p className="mb-6">Leggings, bras and tanks that move as one piece.</p>
                 <Button variant="primary">Shop Women</Button>
              </div>
-          </div>
-          <div className="bg-gray-600 relative group overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/800/1000/bodybuilding,apparel?lock=15")' }}>
+          </Link>
+          <Link href="/category/men" className="bg-gray-600 relative group overflow-hidden flex items-end p-8 bg-cover bg-center block" style={{ backgroundImage: 'url("https://loremflickr.com/800/1000/bodybuilding,apparel?lock=15")' }}>
              <div className="absolute inset-0 bg-black/30 z-10" />
              <div className="relative z-20 text-white max-w-md">
                 <h3 className="text-4xl font-heading font-bold uppercase leading-tight mb-2">Heavyweight Fleece</h3>
                 <p className="mb-6">420gsm hoodies and joggers for the walk there and back.</p>
                 <Button variant="primary">Shop Men</Button>
              </div>
-          </div>
+          </Link>
         </div>
       </section>
 
