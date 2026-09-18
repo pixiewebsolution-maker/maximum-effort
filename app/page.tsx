@@ -56,6 +56,7 @@ export default function Home() {
               key={product.id} 
               id={product.id} 
               name={product.name} 
+              slug={product.slug}
               category={product.category} 
               price={product.price} 
               image={product.image} 
@@ -127,6 +128,7 @@ export default function Home() {
               key={product.id} 
               id={product.id} 
               name={product.name} 
+              slug={product.slug}
               category={product.category} 
               price={product.price} 
               image={product.image} 

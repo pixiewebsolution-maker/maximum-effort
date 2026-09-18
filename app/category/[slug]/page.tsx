@@ -51,6 +51,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
                 key={product.id} 
                 id={product.id} 
                 name={product.name} 
+                slug={product.slug}
                 category={product.category} 
                 price={product.price} 
                 image={product.image} 

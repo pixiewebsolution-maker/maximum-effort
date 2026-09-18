@@ -5,6 +5,7 @@ import { Heart } from 'lucide-react';
 interface ProductCardProps {
   id: string;
   name: string;
+  slug: string;
   category: string;
   price: number;
   image: string;
@@ -16,6 +17,7 @@ interface ProductCardProps {
 export default function ProductCard({
   id,
   name,
+  slug,
   category,
   price,
   image,
@@ -24,7 +26,7 @@ export default function ProductCard({
   isBestSeller
 }: ProductCardProps) {
   return (
-    <div className="group cursor-pointer">
+    <Link href={`/product/${slug}`} className="group cursor-pointer block">
       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
         {/* Badges */}
         <div className="absolute top-2 left-2 z-10 flex flex-col gap-2">
@@ -63,6 +65,6 @@ export default function ProductCard({
           <span className="text-xs text-gray-500 ml-1">{colors} colours</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

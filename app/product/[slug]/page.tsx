@@ -126,17 +126,18 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         <h2 className="text-3xl font-heading font-bold uppercase mb-8">You May Also Like</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {relatedProducts.map(rp => (
-             <ProductCard 
-               key={rp.id} 
-               id={rp.id} 
-               name={rp.name} 
-               category={rp.category} 
-               price={rp.price} 
-               image={rp.image} 
-               colors={rp.colors} 
-               isBestSeller={rp.isBestSeller}
-               isNew={rp.isNew}
-             />
+               <ProductCard 
+                 key={rp.id} 
+                 id={rp.id} 
+                 name={rp.name} 
+                 slug={rp.slug}
+                 category={rp.category} 
+                 price={rp.price} 
+                 image={rp.image} 
+                 colors={rp.colors} 
+                 isBestSeller={rp.isBestSeller}
+                 isNew={rp.isNew}
+               />
           ))}
         </div>
       </section>
