@@ -1,5 +1,6 @@
 import ProductCard from '@/components/ProductCard';
 import AddToCartForm from '@/components/AddToCartForm';
+import ProductCarousel from '@/components/ProductCarousel';
 import { Heart, Star, Check, Truck, RotateCcw, Plus, Minus } from 'lucide-react';
 import { getProductBySlug, getProducts } from '@/lib/api';
 
@@ -31,21 +32,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       
       <div className="flex flex-col md:flex-row gap-12 lg:gap-24">
         {/* Left: Product Images */}
-        <div className="w-full md:w-1/2 flex flex-col gap-4">
-          <div className="aspect-[3/4] bg-gray-200 w-full relative overflow-hidden">
-             <img 
-               src={`https://loremflickr.com/600/800/fitness,gym,wear?lock=${product.id}`}
-               alt={`${product.name} Main`}
-               className="w-full h-full object-cover"
-             />
-          </div>
-          <div className="aspect-[3/4] bg-gray-300 w-full relative overflow-hidden">
-             <img 
-               src={`https://loremflickr.com/600/800/fitness,gym,wear?lock=${Number(product.id) + 100}`}
-               alt={`${product.name} Alternate`}
-               className="w-full h-full object-cover"
-             />
-          </div>
+        <div className="w-full md:w-1/2 md:sticky md:top-24 self-start">
+           <ProductCarousel 
+             images={[
+               `https://loremflickr.com/600/800/fitness,gym,wear?lock=${product.id}`,
+               `https://loremflickr.com/600/800/fitness,gym,wear?lock=${Number(product.id) + 100}`
+             ]}
+             altPrefix={product.name}
+           />
         </div>
 
         {/* Right: Product Details */}
