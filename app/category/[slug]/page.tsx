@@ -1,5 +1,6 @@
 import ProductCard from '@/components/ProductCard';
 import FilterSortBar from '@/components/FilterSortBar';
+import FilterContent from '@/components/FilterContent';
 import products from '@/data/products.json';
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
@@ -31,9 +32,19 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
         <FilterSortBar />
       </section>
 
-      {/* Product Grid */}
-      <section className="py-8 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-x-6 md:gap-y-12">
+      {/* Product Grid Layout */}
+      <section className="py-8 px-4 md:px-8 max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
+        
+        {/* Left Sidebar Filter (Desktop Only) */}
+        <aside className="hidden md:block w-64 shrink-0 border-r border-gray-200 pr-8">
+           <div className="sticky top-32">
+             <FilterContent />
+           </div>
+        </aside>
+
+        {/* Right Side Product Grid */}
+        <div className="flex-1">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-x-6 md:gap-y-12">
           {filteredProducts.length > 0 ? (
             filteredProducts.map(product => (
               <ProductCard 
@@ -53,6 +64,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
               No products found in this category.
             </div>
           )}
+        </div>
         </div>
       </section>
     </div>
