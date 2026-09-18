@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import AddToCartForm from '@/components/AddToCartForm';
 import ProductCarousel from '@/components/ProductCarousel';
@@ -44,7 +45,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
         {/* Right: Product Details */}
         <div className="w-full md:w-1/2 md:sticky md:top-24 self-start">
-          <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-2">{product.category}</p>
+          <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-2">
+            <Link href="/" className="hover:text-black transition-colors">Home</Link> /{' '}
+            <Link href={`/category/${product.category.toLowerCase().replace(/ /g, '-')}`} className="hover:text-black transition-colors">{product.category}</Link> /{' '}
+            <span className="text-black">{product.name}</span>
+          </p>
           <h1 className="text-3xl font-heading font-bold uppercase mb-2">{product.name}</h1>
           
           <div className="flex items-center gap-2 mb-4 text-sm">

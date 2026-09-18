@@ -1,10 +1,18 @@
+import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import FilterSortBar from '@/components/FilterSortBar';
 import FilterContent from '@/components/FilterContent';
 import { getProducts } from '@/lib/api';
 
-export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CategoryPage({ 
+  params,
+  searchParams
+}: { 
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const { slug } = await params;
+  const search = await searchParams;
 
   // Decode slug
   const title = slug === 'women' ? 'Women' : 
@@ -13,10 +21,38 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   const products = await getProducts();
 
+  // Parse filters from URL
+  const activeCategoriesRaw = search.category;
+  const activeCategories = typeof activeCategoriesRaw === 'string' 
+    ? [activeCategoriesRaw] 
+    : activeCategoriesRaw || [];
+
+  const activePricesRaw = search.price;
+  const activePrices = typeof activePricesRaw === 'string'
+    ? [activePricesRaw]
+    : activePricesRaw || [];
+
   // Filter products by slug tags
   let filteredProducts = products;
   if (slug !== 'all') {
-    filteredProducts = products.filter(p => p.tags.includes(slug));
+    filteredProducts = filteredProducts.filter(p => p.tags.includes(slug));
+  }
+
+  // Filter by selected Categories in Sidebar
+  if (activeCategories.length > 0) {
+    filteredProducts = filteredProducts.filter(p => activeCategories.includes(p.category));
+  }
+
+  // Filter by selected Prices in Sidebar
+  if (activePrices.length > 0) {
+    filteredProducts = filteredProducts.filter(p => {
+      // Price logic for dummy filters
+      if (activePrices.includes('Under ₹1,000') && p.price < 1000) return true;
+      if (activePrices.includes('₹1,000 - ₹2,000') && p.price >= 1000 && p.price <= 2000) return true;
+      if (activePrices.includes('₹2,000 - ₹4,000') && p.price > 2000 && p.price <= 4000) return true;
+      if (activePrices.includes('Over ₹4,000') && p.price > 4000) return true;
+      return false;
+    });
   }
 
   return (
@@ -25,7 +61,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <section className="relative h-[40vh] bg-gray-800 flex items-end px-4 md:px-8 pb-8">
         <div className="absolute inset-0 bg-black/40 z-10" />
         <div className="relative z-20 text-white max-w-7xl mx-auto w-full">
-          <p className="text-xs font-bold uppercase tracking-widest mb-2">Home / {title}</p>
+          <p className="text-xs font-bold uppercase tracking-widest mb-2">
+            <Link href="/" className="hover:text-gray-300 transition-colors">Home</Link> / {title}
+          </p>
           <h1 className="text-5xl md:text-6xl font-heading font-bold uppercase mb-2">{title}</h1>
           <p className="text-sm">Seamless sets, sculpting leggings and training layers built to move with you.</p>
         </div>
