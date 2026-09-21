@@ -1,8 +1,12 @@
+import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import ProductCard from '@/components/ProductCard';
-import products from '@/data/products.json';
+import { getProducts, getHomepageData } from '@/lib/api';
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
+  const acf = await getHomepageData();
+  
   const newReleases = products.filter(p => p.isNew).slice(0, 4);
   const bestSellers = products.filter(p => p.isBestSeller).slice(0, 4);
 
@@ -11,18 +15,20 @@ export default function Home() {
       {/* Hero Section */}
       <section 
         className="relative h-[80vh] w-full bg-gray-900 flex items-center justify-start px-4 md:px-12 bg-cover bg-center"
-        style={{ backgroundImage: 'url("https://loremflickr.com/1920/1080/gym,training?lock=10")' }}
+        style={{ backgroundImage: `url("${acf?.hero_image || 'https://loremflickr.com/1920/1080/gym,training?lock=10'}")` }}
       >
         <div className="absolute inset-0 bg-black/40 z-10" />
         <div className="relative z-20 max-w-2xl text-white">
-          <p className="text-xs md:text-sm font-bold uppercase tracking-widest mb-4">Heavy Days</p>
+          <p className="text-xs md:text-sm font-bold uppercase tracking-widest mb-4">{acf?.hero_subtext || 'Heavy Days'}</p>
           <h1 className="text-5xl md:text-7xl font-heading font-bold uppercase leading-tight mb-6">
-            Train Like It<br />Counts
+            {acf?.hero_title || 'Train Like It Counts'}
           </h1>
-          <p className="text-lg md:text-xl mb-8">
-            Fleece, straps and shorts for the sessions that ask for everything.
+          <p className="text-lg md:text-xl mb-8 whitespace-pre-line">
+            {acf?.hero_description || 'Fleece, straps and shorts for the sessions that ask for everything.'}
           </p>
-          <Button variant="primary">Shop Men</Button>
+          <Link href="/category/men">
+            <Button variant="primary">Shop Men</Button>
+          </Link>
         </div>
       </section>
 
@@ -72,47 +78,47 @@ export default function Home() {
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
         <h2 className="text-3xl font-heading font-bold uppercase mb-8">Shop By Category</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[400px]">
-          <div className="bg-gray-200 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/fitness,women?lock=11")' }}>
+          <Link href="/category/women" className="bg-gray-200 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: `url("${acf?.cat_women_image || 'https://loremflickr.com/600/800/fitness,women?lock=11'}")` }}>
              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors z-10" />
              <div className="relative z-20 text-white">
                 <h3 className="text-3xl font-heading font-bold uppercase">Women</h3>
                 <span className="border-b border-white pb-1 mt-2 inline-block font-bold">Shop now</span>
              </div>
-          </div>
-          <div className="bg-gray-300 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/fitness,men?lock=12")' }}>
+          </Link>
+          <Link href="/category/men" className="bg-gray-300 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: `url("${acf?.cat_men_image || 'https://loremflickr.com/600/800/fitness,men?lock=12'}")` }}>
              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors z-10" />
              <div className="relative z-20 text-white">
                 <h3 className="text-3xl font-heading font-bold uppercase">Men</h3>
                 <span className="border-b border-white pb-1 mt-2 inline-block font-bold">Shop now</span>
              </div>
-          </div>
-          <div className="bg-gray-400 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/600/800/gym,equipment?lock=13")' }}>
+          </Link>
+          <Link href="/category/accessories" className="bg-gray-400 relative group cursor-pointer overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: `url("${acf?.cat_acc_image || 'https://loremflickr.com/600/800/gym,equipment?lock=13'}")` }}>
              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors z-10" />
              <div className="relative z-20 text-white">
                 <h3 className="text-3xl font-heading font-bold uppercase">Accessories</h3>
                 <span className="border-b border-white pb-1 mt-2 inline-block font-bold">Shop now</span>
              </div>
-          </div>
+          </Link>
         </div>
 
         {/* Seamless and Fleece */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 h-[500px]">
-          <div className="bg-gray-500 relative group overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/800/1000/yoga,apparel?lock=14")' }}>
+          <Link href="/category/women" className="bg-gray-500 relative group overflow-hidden flex items-end p-8 bg-cover bg-center block" style={{ backgroundImage: `url("${acf?.coll_seamless_img || 'https://loremflickr.com/800/1000/yoga,apparel?lock=14'}")` }}>
              <div className="absolute inset-0 bg-black/30 z-10" />
              <div className="relative z-20 text-white max-w-md">
-                <h3 className="text-4xl font-heading font-bold uppercase leading-tight mb-2">The Seamless Collection</h3>
-                <p className="mb-6">Leggings, bras and tanks that move as one piece.</p>
+                <h3 className="text-4xl font-heading font-bold uppercase leading-tight mb-2">{acf?.coll_seamless_title || 'The Seamless Collection'}</h3>
+                <p className="mb-6">{acf?.coll_seamless_desc || 'Leggings, bras and tanks that move as one piece.'}</p>
                 <Button variant="primary">Shop Women</Button>
              </div>
-          </div>
-          <div className="bg-gray-600 relative group overflow-hidden flex items-end p-8 bg-cover bg-center" style={{ backgroundImage: 'url("https://loremflickr.com/800/1000/bodybuilding,apparel?lock=15")' }}>
+          </Link>
+          <Link href="/category/men" className="bg-gray-600 relative group overflow-hidden flex items-end p-8 bg-cover bg-center block" style={{ backgroundImage: `url("${acf?.coll_fleece_img || 'https://loremflickr.com/800/1000/bodybuilding,apparel?lock=15'}")` }}>
              <div className="absolute inset-0 bg-black/30 z-10" />
              <div className="relative z-20 text-white max-w-md">
-                <h3 className="text-4xl font-heading font-bold uppercase leading-tight mb-2">Heavyweight Fleece</h3>
-                <p className="mb-6">420gsm hoodies and joggers for the walk there and back.</p>
+                <h3 className="text-4xl font-heading font-bold uppercase leading-tight mb-2">{acf?.coll_fleece_title || 'Heavyweight Fleece'}</h3>
+                <p className="mb-6">{acf?.coll_fleece_desc || '420gsm hoodies and joggers for the walk there and back.'}</p>
                 <Button variant="primary">Shop Men</Button>
              </div>
-          </div>
+          </Link>
         </div>
       </section>
 

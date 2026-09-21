@@ -1,0 +1,137 @@
+[
+  {
+    "key": "group_homepage_content",
+    "title": "Homepage Content",
+    "fields": [
+      {
+        "key": "field_hero_tab",
+        "label": "Hero Section",
+        "name": "",
+        "type": "tab",
+        "placement": "top"
+      },
+      {
+        "key": "field_hero_subtext",
+        "label": "Hero Subtext",
+        "name": "hero_subtext",
+        "type": "text",
+        "default_value": "Heavy Days"
+      },
+      {
+        "key": "field_hero_title",
+        "label": "Hero Title",
+        "name": "hero_title",
+        "type": "text",
+        "default_value": "Train Like It Counts"
+      },
+      {
+        "key": "field_hero_description",
+        "label": "Hero Description",
+        "name": "hero_description",
+        "type": "textarea",
+        "default_value": "Fleece, straps and shorts for the sessions that ask for everything."
+      },
+      {
+        "key": "field_hero_image",
+        "label": "Hero Background Image",
+        "name": "hero_image",
+        "type": "image",
+        "return_format": "url"
+      },
+      {
+        "key": "field_categories_tab",
+        "label": "Categories Banner",
+        "name": "",
+        "type": "tab",
+        "placement": "top"
+      },
+      {
+        "key": "field_cat_women_image",
+        "label": "Women Category Image",
+        "name": "cat_women_image",
+        "type": "image",
+        "return_format": "url"
+      },
+      {
+        "key": "field_cat_men_image",
+        "label": "Men Category Image",
+        "name": "cat_men_image",
+        "type": "image",
+        "return_format": "url"
+      },
+      {
+        "key": "field_cat_acc_image",
+        "label": "Accessories Category Image",
+        "name": "cat_acc_image",
+        "type": "image",
+        "return_format": "url"
+      },
+      {
+        "key": "field_collections_tab",
+        "label": "Collections",
+        "name": "",
+        "type": "tab",
+        "placement": "top"
+      },
+      {
+        "key": "field_coll_seamless_title",
+        "label": "Seamless Collection Title",
+        "name": "coll_seamless_title",
+        "type": "text",
+        "default_value": "The Seamless Collection"
+      },
+      {
+        "key": "field_coll_seamless_desc",
+        "label": "Seamless Collection Description",
+        "name": "coll_seamless_desc",
+        "type": "text",
+        "default_value": "Leggings, bras and tanks that move as one piece."
+      },
+      {
+        "key": "field_coll_seamless_img",
+        "label": "Seamless Collection Image",
+        "name": "coll_seamless_img",
+        "type": "image",
+        "return_format": "url"
+      },
+      {
+        "key": "field_coll_fleece_title",
+        "label": "Fleece Collection Title",
+        "name": "coll_fleece_title",
+        "type": "text",
+        "default_value": "Heavyweight Fleece"
+      },
+      {
+        "key": "field_coll_fleece_desc",
+        "label": "Fleece Collection Description",
+        "name": "coll_fleece_desc",
+        "type": "text",
+        "default_value": "420gsm hoodies and joggers for the walk there and back."
+      },
+      {
+        "key": "field_coll_fleece_img",
+        "label": "Fleece Collection Image",
+        "name": "coll_fleece_img",
+        "type": "image",
+        "return_format": "url"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_type",
+          "operator": "==",
+          "value": "front_page"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "page"
+        }
+      ]
+    ],
+    "active": true
+  }
+]

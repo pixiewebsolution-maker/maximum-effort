@@ -1,6 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
+import { useWishlist } from '@/context/WishlistContext';
 
 interface ProductCardProps {
   id: string;
@@ -25,6 +28,21 @@ export default function ProductCard({
   isNew,
   isBestSeller
 }: ProductCardProps) {
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+
+  const handleWishlistClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isInWishlist(id)) {
+      removeFromWishlist(id);
+    } else {
+      addToWishlist({
+        id, name, slug, category, price, image, colors,
+        description: '', rating: 0, reviews: 0, tags: []
+      });
+    }
+  };
+
   return (
     <Link href={`/product/${slug}`} className="group cursor-pointer block">
       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
@@ -39,8 +57,13 @@ export default function ProductCard({
         </div>
         
         {/* Wishlist Button */}
-        <button className="absolute top-2 right-2 z-10 p-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
-          <Heart className="w-4 h-4" />
+        <button 
+          onClick={handleWishlistClick}
+          className={`absolute top-2 right-2 z-10 p-2 bg-white rounded-full transition-opacity shadow-sm ${
+            isInWishlist(id) ? 'opacity-100 text-red-500' : 'opacity-0 group-hover:opacity-100'
+          }`}
+        >
+          <Heart className={`w-4 h-4 ${isInWishlist(id) ? 'fill-current' : ''}`} />
         </button>
 
         {/* Image */}
