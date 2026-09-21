@@ -4,7 +4,11 @@ import { useState, useEffect } from 'react';
 import { SlidersHorizontal, ChevronDown, X } from 'lucide-react';
 import FilterContent from '@/components/FilterContent';
 
-export default function FilterSortBar() {
+interface FilterSortBarProps {
+  productCount?: number;
+}
+
+export default function FilterSortBar({ productCount = 12 }: FilterSortBarProps) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Prevent background scrolling when filter is open
@@ -33,7 +37,7 @@ export default function FilterSortBar() {
         </button>
         
         {/* Desktop Product Count */}
-        <div className="hidden md:block text-gray-500">12 products</div>
+        <div className="hidden md:block text-gray-500">{productCount} products</div>
         
         <div className="flex items-center gap-2 ml-auto">
           <span className="hidden md:inline-block">Sort</span>
