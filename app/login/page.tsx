@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sign In',
+  description: 'Sign in to your RawGearMaximumEffort account.',
+};
 
 export default function LoginPage() {
   return (
@@ -33,7 +39,7 @@ export default function LoginPage() {
             />
           </div>
           
-          <Button variant="primary" className="w-full">Sign In</Button>
+          <Button variant="secondary" className="w-full">Sign In</Button>
         </form>
 
         <div className="mt-8 text-center text-sm">

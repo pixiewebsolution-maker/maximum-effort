@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Reset Password',
+  description: 'Reset your RawGearMaximumEffort account password.',
+};
 
 export default function ForgotPasswordPage() {
   return (
@@ -19,7 +25,7 @@ export default function ForgotPasswordPage() {
             />
           </div>
           
-          <Button variant="primary" className="w-full">Send Reset Link</Button>
+          <Button variant="secondary" className="w-full">Send Reset Link</Button>
         </form>
 
         <div className="mt-8 text-center text-sm">

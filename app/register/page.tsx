@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Create Account',
+  description: 'Join the RawGearMaximumEffort community.',
+};
 
 export default function RegisterPage() {
   return (
@@ -46,7 +52,7 @@ export default function RegisterPage() {
             />
           </div>
           
-          <Button variant="primary" className="w-full">Create Account</Button>
+          <Button variant="secondary" className="w-full">Create Account</Button>
         </form>
 
         <div className="mt-8 text-center text-sm">

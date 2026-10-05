@@ -32,7 +32,7 @@ export default function FilterContent() {
     <div className="space-y-8">
       {/* Category */}
       <div>
-        <h3 className="font-bold uppercase tracking-widest text-sm mb-4">Category</h3>
+        <h3 className="font-semibold uppercase tracking-wider text-xs text-gray-600 mb-3">Category</h3>
         <div className="space-y-3">
           {['Leggings', 'Sports Bras', 'Hoodies & Jackets', 'T-Shirts & Tops', 'Shorts', 'Accessories'].map((cat) => (
             <label key={cat} className="flex items-center gap-3 cursor-pointer group">
@@ -42,7 +42,7 @@ export default function FilterContent() {
                 onChange={() => toggleFilter('category', cat)}
                 className="w-4 h-4 accent-black cursor-pointer" 
               />
-              <span className="text-sm group-hover:text-gray-600">{cat}</span>
+              <span className="text-sm font-normal text-gray-700 group-hover:text-black">{cat}</span>
             </label>
           ))}
         </div>
@@ -50,7 +50,7 @@ export default function FilterContent() {
 
       {/* Size (UI Only) */}
       <div>
-        <h3 className="font-bold uppercase tracking-widest text-sm mb-4">Size</h3>
+        <h3 className="font-semibold uppercase tracking-wider text-xs text-gray-600 mb-3">Size</h3>
         <div className="grid grid-cols-4 gap-2">
           {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map((size) => (
             <label key={size} className="cursor-pointer">
@@ -60,7 +60,7 @@ export default function FilterContent() {
                 onChange={() => toggleFilter('size', size)}
                 className="peer sr-only cursor-pointer" 
               />
-              <div className="border border-gray-300 text-center py-2 text-sm font-bold peer-checked:bg-black peer-checked:text-white peer-checked:border-black hover:border-black transition-colors">
+              <div className="border border-gray-300 text-center py-2 text-xs font-medium peer-checked:bg-black peer-checked:text-white peer-checked:border-black hover:border-black transition-colors">
                 {size}
               </div>
             </label>
@@ -70,7 +70,7 @@ export default function FilterContent() {
 
       {/* Colour (UI Only) */}
       <div>
-        <h3 className="font-bold uppercase tracking-widest text-sm mb-4">Colour</h3>
+        <h3 className="font-semibold uppercase tracking-wider text-xs text-gray-600 mb-3">Colour</h3>
         <div className="flex flex-wrap gap-3">
           {[
             {name: 'Black', hex: '#000000'},
@@ -91,7 +91,7 @@ export default function FilterContent() {
                 className="w-8 h-8 rounded-full border border-gray-300 peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-black"
                 style={{ backgroundColor: color.hex }}
               />
-              <span className="text-xs text-gray-500">{color.name}</span>
+              <span className="text-xs text-gray-500 font-normal">{color.name}</span>
             </label>
           ))}
         </div>
@@ -99,7 +99,7 @@ export default function FilterContent() {
 
       {/* Price */}
       <div>
-        <h3 className="font-bold uppercase tracking-widest text-sm mb-4">Price</h3>
+        <h3 className="font-semibold uppercase tracking-wider text-xs text-gray-600 mb-3">Price</h3>
         <div className="space-y-3">
           {['Under ₹1,000', '₹1,000 - ₹2,000', '₹2,000 - ₹4,000', 'Over ₹4,000'].map((price) => (
             <label key={price} className="flex items-center gap-3 cursor-pointer group">
@@ -109,7 +109,7 @@ export default function FilterContent() {
                 onChange={() => toggleFilter('price', price)}
                 className="w-4 h-4 accent-black cursor-pointer" 
               />
-              <span className="text-sm group-hover:text-gray-600">{price}</span>
+              <span className="text-sm font-normal text-gray-700 group-hover:text-black">{price}</span>
             </label>
           ))}
         </div>

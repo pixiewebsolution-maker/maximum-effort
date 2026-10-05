@@ -26,7 +26,7 @@ export default function FilterSortBar({ productCount = 12 }: FilterSortBarProps)
   return (
     <>
       {/* The Bar */}
-      <div className="max-w-7xl mx-auto flex justify-between items-center text-sm font-bold uppercase tracking-widest">
+      <div className="max-w-7xl mx-auto flex justify-between items-center text-sm font-medium uppercase tracking-wider">
         {/* Mobile Filter Button (Hidden on Desktop) */}
         <button 
           onClick={() => setIsFilterOpen(true)}

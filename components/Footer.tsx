@@ -1,11 +1,14 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
     <footer className="bg-[#101010] text-white pt-16 pb-8 px-4 md:px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
-          <h3 className="font-heading text-xl font-bold uppercase mb-4 tracking-wider">Maximum Effort</h3>
+          <Link href="/" className="inline-block mb-4">
+            <Image src="/images/logoNew.png" alt="RawGearMaximumEffort" width={200} height={40} className="object-contain" />
+          </Link>
           <p className="text-gray-400 text-sm mb-6">Training kit built for the days you do not feel like it. Designed in India, tested in real gyms.</p>
           <h4 className="font-bold text-sm uppercase mb-2">Get 10% off your first order</h4>
           <div className="flex border-b border-gray-600 pb-2">
@@ -43,7 +46,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-800 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center">
-        <p>&copy; 2026 Maximum Effort. All rights reserved.</p>
+        <p>&copy; 2026 RawGearMaximumEffort. All rights reserved.</p>
         <p className="mt-4 md:mt-0">Prices in INR. Demo store built with Next.js.</p>
       </div>
     </footer>

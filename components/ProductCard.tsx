@@ -49,10 +49,10 @@ export default function ProductCard({
         {/* Badges */}
         <div className="absolute top-2 left-2 z-10 flex flex-col gap-2">
           {isBestSeller && (
-            <span className="bg-white text-black text-xs font-bold px-2 py-1 uppercase tracking-wider">Best Seller</span>
+            <span className="bg-white text-black text-xs font-semibold px-2 py-1 uppercase tracking-wider">Best Seller</span>
           )}
           {isNew && (
-            <span className="bg-black text-white text-xs font-bold px-2 py-1 uppercase tracking-wider">New</span>
+            <span className="bg-black text-white text-xs font-semibold px-2 py-1 uppercase tracking-wider">New</span>
           )}
         </div>
         
@@ -69,7 +69,7 @@ export default function ProductCard({
         {/* Image */}
         <div className="w-full h-full relative">
           <img 
-            src={`https://loremflickr.com/600/800/fitness,gym,wear?lock=${id}`}
+            src={image || '/images/products/IMG_4220.PNG'}
             alt={name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
@@ -77,15 +77,15 @@ export default function ProductCard({
       </div>
 
       <div className="mt-4">
-        <h3 className="font-bold text-gray-900">{name}</h3>
-        <p className="text-gray-500 text-sm mt-1">{category}</p>
-        <p className="font-bold mt-2">₹{price.toLocaleString('en-IN')}</p>
+        <h3 className="font-normal text-gray-900 text-sm md:text-base">{name}</h3>
+        <p className="text-gray-500 text-xs md:text-sm mt-0.5 font-normal">{category}</p>
+        <p className="font-medium text-gray-900 mt-1.5 text-sm md:text-base">₹{price.toLocaleString('en-IN')}</p>
         
         {/* Color Indicators */}
-        <div className="flex items-center gap-1 mt-3">
-          <div className="w-3 h-3 rounded-full bg-black border border-gray-300"></div>
-          <div className="w-3 h-3 rounded-full bg-gray-500 border border-gray-300"></div>
-          <span className="text-xs text-gray-500 ml-1">{colors} colours</span>
+        <div className="flex items-center gap-1 mt-2.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-black border border-gray-300"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-gray-500 border border-gray-300"></div>
+          <span className="text-xs text-gray-400 ml-1 font-normal">{colors} colours</span>
         </div>
       </div>
     </Link>

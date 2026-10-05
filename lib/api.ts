@@ -66,7 +66,9 @@ async function fetchWooCommerceProducts(): Promise<Product[]> {
       slug: p.slug,
       category: p.categories && p.categories.length > 0 ? p.categories[0].name : 'Uncategorized',
       price: parseFloat(p.price || p.regular_price || '0'),
-      image: p.images && p.images.length > 0 ? p.images[0].src : `https://loremflickr.com/600/800/fitness,gym,wear?lock=${p.id}`,
+      image: p.images && p.images.length > 0 
+        ? p.images[0].src 
+        : `/images/products/${['IMG_4220.PNG', 'IMG_4232.PNG', 'IMG_4233.PNG', 'IMG_4234.PNG', 'IMG_4236.PNG', 'IMG_4239.PNG', 'IMG_4240.PNG'][p.id % 7]}`,
       colors: 1,
       isNew: p.featured || false,
       isBestSeller: p.total_sales > 5,

@@ -14,21 +14,23 @@ export default async function Home() {
     <div>
       {/* Hero Section */}
       <section 
-        className="relative h-[80vh] w-full bg-gray-900 flex items-center justify-start px-4 md:px-12 bg-cover bg-center"
-        style={{ backgroundImage: `url("${acf?.hero_image || 'https://loremflickr.com/1920/1080/gym,training?lock=10'}")` }}
+        className="relative h-auto py-8 md:py-0 md:h-[80vh] w-full bg-gray-900 flex items-center justify-start px-4 md:px-12 bg-cover bg-center"
+        style={{ backgroundImage: `url("${acf?.hero_image || '/images/products/hero-banner.png'}")` }}
       >
         <div className="absolute inset-0 bg-black/40 z-10" />
         <div className="relative z-20 max-w-2xl text-white">
-          <p className="text-xs md:text-sm font-bold uppercase tracking-widest mb-4">{acf?.hero_subtext || 'Heavy Days'}</p>
-          <h1 className="text-5xl md:text-7xl font-heading font-bold uppercase leading-tight mb-6">
+          <p className="text-xs md:text-sm font-bold uppercase tracking-widest mb-2 md:mb-4">{acf?.hero_subtext || 'Heavy Days'}</p>
+          <h1 className="text-3xl sm:text-4xl md:text-7xl font-heading font-bold uppercase leading-tight mb-0 md:mb-6">
             {acf?.hero_title || 'Train Like It Counts'}
           </h1>
-          <p className="text-lg md:text-xl mb-8 whitespace-pre-line">
+          <p className="hidden md:block text-lg md:text-xl mb-8 whitespace-pre-line">
             {acf?.hero_description || 'Fleece, straps and shorts for the sessions that ask for everything.'}
           </p>
-          <Link href="/category/men">
-            <Button variant="primary">Shop Men</Button>
-          </Link>
+          <div className="hidden md:block">
+            <Link href="/category/men">
+              <Button variant="primary">Shop Men</Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -146,10 +148,10 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Maximum Effort Central */}
+      {/* RawGearMaximumEffort Central */}
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto border-t border-gray-200">
         <div className="flex justify-between items-end mb-8">
-          <h2 className="text-3xl font-heading font-bold uppercase">Maximum Effort Central</h2>
+          <h2 className="text-3xl font-heading font-bold uppercase">RawGearMaximumEffort Central</h2>
           <button className="text-sm font-bold border-b border-black pb-1 uppercase tracking-widest">All Articles</button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

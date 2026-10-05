@@ -5,6 +5,19 @@ import ProductCarousel from '@/components/ProductCarousel';
 import ProductAccordions from '@/components/ProductAccordions';
 import { Heart, Star, Check, Truck, RotateCcw, Plus, Minus } from 'lucide-react';
 import { getProductBySlug, getProducts } from '@/lib/api';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
+  if (!product) {
+    return { title: 'Product Not Found' };
+  }
+  return {
+    title: product.name,
+    description: product.description,
+  };
+}
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -37,8 +50,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="w-full md:w-1/2 md:sticky md:top-24 self-start">
            <ProductCarousel 
              images={[
-               `https://loremflickr.com/600/800/fitness,gym,wear?lock=${product.id}`,
-               `https://loremflickr.com/600/800/fitness,gym,wear?lock=${Number(product.id) + 100}`
+               product.image || '/images/products/IMG_4220.PNG',
+               // Alternate secondary image from product uploaded gallery
+               product.image.includes('IMG_4220') ? '/images/products/IMG_4232.PNG' : '/images/products/IMG_4220.PNG'
              ]}
              altPrefix={product.name}
            />

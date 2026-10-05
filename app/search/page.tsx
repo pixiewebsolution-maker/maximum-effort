@@ -3,6 +3,16 @@ import ProductCard from '@/components/ProductCard';
 import FilterSortBar from '@/components/FilterSortBar';
 import FilterContent from '@/components/FilterContent';
 import { getProducts } from '@/lib/api';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
+  const search = await searchParams;
+  const q = typeof search.q === 'string' ? search.q : '';
+  return {
+    title: q ? `Search: "${q}"` : 'Search',
+    description: 'Search products in RawGearMaximumEffort store.',
+  };
+}
 
 export default async function SearchPage({ 
   searchParams

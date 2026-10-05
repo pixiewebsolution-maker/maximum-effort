@@ -12,7 +12,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 
 export const metadata: Metadata = {
-  title: "Maximum Effort",
+  title: {
+    default: "RawGearMaximumEffort",
+    template: "%s | RawGearMaximumEffort",
+  },
   description: "Train like it counts. Storefront.",
 };
 

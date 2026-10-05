@@ -70,7 +70,7 @@ export default function AddToCartForm({ product }: AddToCartFormProps) {
       </div>
 
       <div className="flex gap-4 mb-4">
-        <Button onClick={handleAddToCart} variant="primary" className="flex-1">Add to Bag</Button>
+        <Button onClick={handleAddToCart} variant="secondary" className="flex-1">Add to Bag</Button>
         <button 
           onClick={() => isInWishlist(product.id) ? removeFromWishlist(product.id) : addToWishlist(product)}
           className={`p-4 border transition-colors flex items-center justify-center shrink-0 ${

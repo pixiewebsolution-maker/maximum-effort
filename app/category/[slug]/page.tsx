@@ -3,6 +3,21 @@ import ProductCard from '@/components/ProductCard';
 import FilterSortBar from '@/components/FilterSortBar';
 import FilterContent from '@/components/FilterContent';
 import { getProducts } from '@/lib/api';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const title = slug === 'women' ? 'Women' : 
+                slug === 'men' ? 'Men' : 
+                slug === 'accessories' ? 'Accessories' : 
+                slug === 'sale' ? 'Sale' :
+                slug === 'new' ? 'New Releases' :
+                slug.charAt(0).toUpperCase() + slug.slice(1);
+  return {
+    title: title,
+    description: `Shop ${title} training apparel and equipment.`,
+  };
+}
 
 export default async function CategoryPage({ 
   params,
